@@ -25,27 +25,36 @@ double Gerenciamento::calcularTotalDaFolha(){
 }
 
 double Gerenciamento::consultaSalarioDeFuncionario(int matricula){
+    int existe = 0;
+    double salarioSemanal = 0;
     for(int i = 0; i < funcionario.size(); i++){
         if(matricula == funcionario[i]->getMatricula()){
-            return funcionario[i]->calcularSalario();
+            salarioSemanal += funcionario[i]->calcularSalario();
+            existe = 1;
         }
     }
+
+    if(existe == 0){
+        throw FuncionarioNaoExisteException();
+    }
+
+    return salarioSemanal;
 }
 
 int Gerenciamento::consultaNomeDeFuncionario(string nome){
-    int retorno = 0;
+    int existe = 0;
     for(int i = 0; i < funcionario.size(); i++){
-       retorno = funcionario[i]->getNome() == nome;
-       if(retorno == 1){
+       existe = funcionario[i]->getNome() == nome;
+       if(existe == 1){
             break;
        }
     }
 
-    if(retorno == 0){
+    if(existe == 0){
         throw FuncionarioNaoExisteException();
     }
 
-    return retorno;
+    return existe;
 }
 
 double Gerenciamento::getOrcamento(){

@@ -22,22 +22,21 @@ int main()
 
     ger.setFuncionarios(f);
 
-    cout.precision(2);
-
-    cout << "Dados dos Funcionarios:\n" << endl;
-    for(int i = 0; i < f.size(); i++){
-        cout<< fixed << "Nome: " << f[i]->getNome()
-            << "\nMatricula: " << f[i]->getMatricula()
-            //<< "\nSalario Semanal: R$ "<< f[i]->calcularSalario()
-            << "\nSalario Semanal: R$ "<< ger.consultaSalarioDeFuncionario(f[i]->getMatricula())
-            << "\n" << endl;
-    }
-
     try{
-        cout<< fixed << "\nOrcamento Semanal \tR$ " << ger.getOrcamento()
-            << "\nTotal Folha Semanal \tR$ " << ger.calcularTotalDaFolha() << endl;
+        cout.precision(2);
+        cout << "Dados dos Funcionarios:\n" << endl;
+        for(int i = 0; i < f.size(); i++){
+            cout<< fixed << "Nome: " << f[i]->getNome()
+                << "\nMatricula: " << f[i]->getMatricula()
+                //<< "\nSalario Semanal: R$ "<< f[i]->calcularSalario()
+                << "\nSalario Semanal: R$ "<< ger.consultaSalarioDeFuncionario(f[i]->getMatricula())
+                << "\n" << endl;
+        }
 
-        cout << "Tem funcionario com o nome de Carlos: "<< (ger.consultaNomeDeFuncionario("Carlos")? "Sim." : "Nao.") << endl;
+        cout<< fixed << "\nOrcamento Semanal \tR$ " << ger.getOrcamento()
+            << "\nTotal Folha Semanal \tR$ " << ger.calcularTotalDaFolha() << "\n" << endl;
+
+        cout << "Tem funcionario com o nome de Carlos: "<< (ger.consultaNomeDeFuncionario("Crlos")? "Sim." : "Nao.") << endl;
 
     } catch(exception &e){
         cout << e.what() << endl;
